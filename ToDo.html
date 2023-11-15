@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            display: flex;
+            margin: auto;
+            align-items: center;
+            justify-content: center;
+        }
+        input[text]{
+            width: 100px;
+        }
+        input[button]{
+            height: 40px;
+        }
+        h2{
+            text-align: center;
+        }
+        li{
+            list-style: none;
+            border: black 1px solid;
+            margin: 5px;
+            display: flex;
+            margin-left: -40px;
+            justify-content: space-between;
+            
+        }
+        .done{
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h2>ToDo App</h2>
+        <input type="text" id="taskInput" placeholder="Add a new task">
+        <input type="button"  onclick="addTask()" value="Add Task">
+        <ul id="taskList">
+            
+        </ul>
+    </div>
+    <script>
+        function addTask(){
+            let task=document.getElementById('taskInput').value
+            document.getElementById('taskList').value =''
+            console.log(task);
+            if(!task) return
+             document.getElementById('taskList').innerHTML+=`<li><span onclick="completeTask(this)">✔</span><span>${task}</span><span onclick="deleteTask(this)">❌</span></li>`
+        }
+        function completeTask(domObj){
+            domObj.nextElementSibling.classList.toggle('done')
+        }
+        function deleteTask(domObj) {
+            domObj.parentElement.remove()
+        }
+    </script>
+</body>
+</html>
